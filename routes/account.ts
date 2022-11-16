@@ -59,11 +59,8 @@ account.get('/account', (req, res) => {
         console.log(`Alice's auth key: `, bob.authKey())
         console.log(`Alice's private key: `, privateKey2)
         var txn = act_secretKey.toString()
-        // console.log("Alicer: " + JSON.stringify(alice, null, 8))
-        // console.log("Spliter: " +txn.split(","))
-        // const privateKey0: '70161dc4a36793ac93e75a325cb9d86cc6d2dd0ac072136a65bb7c659d1e3fe3';
         const alice_ = new AptosAccount(alice.signingKey.secretKey)
-        // console.log('lets see' + JSON.stringify(alice_ , null, 8))
+        console.log('lets see' + JSON.stringify(alice_ , null, 8))
 
         // Signing
         var er = HexString.fromUint8Array(alice.signingKey.secretKey.slice(0, 32)).hex()
