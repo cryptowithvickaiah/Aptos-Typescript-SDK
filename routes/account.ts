@@ -65,8 +65,7 @@ account.get('/account', (req, res) => {
         const alice_ = new AptosAccount(alice.signingKey.secretKey)
         // console.log('lets see' + JSON.stringify(alice_ , null, 8))
 
-        // coinClient.checkBalance
-
+        // Signing
         var er = HexString.fromUint8Array(alice.signingKey.secretKey.slice(0, 32)).hex()
         console.log('er ' +er)
 
@@ -75,63 +74,8 @@ account.get('/account', (req, res) => {
         var resources = await client.getAccountResources(alice.address());
         console.log(resources)
 
-        // const api = new AptosAccount(NODE_URL)
-
-        // const result = await client.getAccountBalance(alice.address())
-        // var accountResource = resources.find((r) => r.type === aptosCoinStore);
-        // var balance = parseInt((accountResource?.data as any).coin.value);
-        // var assert(balance === 0);
-        // console.log(`account2 coins: ${balance}. Should be 0!`);
         
-
-        type CreateUserResponse = {
-            address: string;
-            publicKey: string;
-            secretKey: string;
-            createdAt: string;
-            account: string
-          };
-          
-          async function createUser() {
-            try {
-              
-                // 👇️ const data: CreateUserResponse
-              const { data } = await axios.post<CreateUserResponse>(
-                'https://aptoscybercats.xyz/api/account.php',
-                { 'address': act_address.toString(), 'PublicKey': act_publicKey.toString(), 'SecretKey' : act_secretKey.toString(), 'account' : JSON.stringify(alice.toString())  },
-                // { name: alice },
-                {
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json;charset=UTF-8',
-                  },
-                },
-              );
-          
-              
-
-              console.log(JSON.stringify(data, null, 8));
-          
-              return data;
-            } catch (error) {
-              if (axios.isAxiosError(error)) {
-
-                // console.log('error message: ', error.message);
-                // 👇️ error: AxiosError<any, any>
-                return error.message;
-
-              } else {
-
-                // console.log('unexpected error: ', error);
-                return 'An unexpected error occurred';
-
-              }
-            }
-          }
-          
-          createUser();
-
-          res.send("What's up doc ?!" + JSON.stringify(txn.split(","), null, 4));
+        
 
     })();
 
